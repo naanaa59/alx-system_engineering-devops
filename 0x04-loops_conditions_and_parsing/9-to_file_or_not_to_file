@@ -5,9 +5,9 @@ path_file="school"
 if [ -e "$path_file" ]; then
 	echo "school file exists"
 	if [ -s $path_file ]; then
-		echo "school is not empty"
+		echo "school file is not empty"
 	else
-		echo "school is empty"
+		echo "school file is empty"
 	fi
 	if [ -f $path_file ]; then
 		echo "school is a regular file"
