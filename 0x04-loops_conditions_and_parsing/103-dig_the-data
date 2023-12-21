@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # This script parses and sort the occurence of an ip and http code in apache file
 
-awk '{ ip_counts[$1" "$9]++ } END { for (ip in ip_counts) print ip_counts[ip], ip | "sort -k1,1nr" }' apache-access.log
+awk '{ ip_counts[$1" "$9]++ } END { for (ip in ip_counts) print "    " ip_counts[ip], ip | "sort -k1,1nr" }' apache-access.log
 
