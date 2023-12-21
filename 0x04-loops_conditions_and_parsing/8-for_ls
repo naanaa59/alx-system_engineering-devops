@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #This script display the name o the files in current directory
-list_files=$(find . | cut -d "-" -f 2)
+ls_output=$(ls)
+list_files=$(echo "$ls_output" | cut -d "-" -f 2)
 
 for file in $list_files; do
 	echo "$file"
