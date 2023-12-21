@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#This script displays the content of /etc/passwd
+
+
+exec 3< /etc/passwd
+
+while IFS=: read -u 3 -r username _ uid _ _ home _; do
+	echo "$username:$uid:$home"
+done
