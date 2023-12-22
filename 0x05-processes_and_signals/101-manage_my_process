@@ -6,22 +6,20 @@ file_path="/var/run/my_process.pid"
 case "$1" in
 	start)
 
-		sudo ./manage_my_process &
-		manage_pid=$!
-		echo "$manage_pid" > "$file_path"
+		./manage_my_process &
+		echo $! > $file_path
 		echo "manage_my_process started"
 		;;
 	stop)
-		kill $manage_pid
+		kill $(cat $file_path)
 		rm $file_path
 		echo "manage_my_process stopped"
 		;;
 	restart)
-		kill $manage_pid
+		kill $(cat $file_path)
 		rm $file_path
 		./manage_my_process &
-		manage_pid=$!
-		echo "$manage_pid" > "$file_path"
+		echo $! > $file_path
 		echo "manage_my_process restarted"
 		;;
 	*)
