@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-
+#This script handle a script named manage_process
 
 case "$1" in
 	start)
