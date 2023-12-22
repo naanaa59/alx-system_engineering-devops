@@ -7,18 +7,19 @@ case "$1" in
 	start)
 
 		./manage_my_process &
-		echo $! > $file_path
+		echo $$ > $file_path
 		echo "manage_my_process started"
 		;;
 	stop)
-		kill $(cat $file_path)
+		kill "$(pgrep -f /manage_my_process)"
 		rm $file_path
 		echo "manage_my_process stopped"
 		;;
 	restart)
-		kill $(cat $file_path)
+		kill "$(pgrep -f /manage_my_process)"
 		rm $file_path
 		./manage_my_process &
+		touch $file_path
 		echo $! > $file_path
 		echo "manage_my_process restarted"
 		;;
