@@ -1,4 +1,6 @@
-# This puppet manifest configure the /etc/ssh/ssh_config file to use the private key and refuse to authenticate using a password
+# This puppet manifest configuration file
+
+include stdlib
 
 file_line { 'Use private key in path':
   ensure  => present,
@@ -7,9 +9,9 @@ file_line { 'Use private key in path':
   replace => true,
 }
 
-file_line { 'Refuse password authentification':
+file_line { 'Refuse password authentication':
   ensure  => present,
   path    => '/etc/ssh/ssh_config',
-  line    => '   PasswordAuthentification no',
+  line    => '   PasswordAuthentication no',
   replace => true,
 }
