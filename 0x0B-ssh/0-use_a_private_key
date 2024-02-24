@@ -2,4 +2,4 @@
 # This script uses ssh to connect to my server using the private key in ~/.ssh/school with the user ubuntu
 
 ssh ubuntu@54.81.175.229
-cat ~/.ssh/school | ssh ubuntu@54.81.175.229 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+cat ~/.ssh/school | ssh ubuntu@54.81.175.229 "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys"
