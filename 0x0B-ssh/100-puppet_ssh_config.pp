@@ -3,13 +3,13 @@
 file_line { 'Use private key in path':
   ensure  => present,
   path    => '/etc/ssh/ssh_config',
-  line    => 'IdentityFile ~/.ssh/school',
+  line    => '	 IdentityFile ~/.ssh/school',
   replace => true,
 }
 
 file_line { 'Refuse password authentification':
   ensure  => present,
   path    => '/etc/ssh/ssh_config',
-  line    => 'PasswordAuthentification no',
+  line    => '   PasswordAuthentification no',
   replace => true,
 }
