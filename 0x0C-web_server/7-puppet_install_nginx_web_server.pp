@@ -20,10 +20,18 @@ class nginx_configure {
 	file { '/etc/nginx/sites-available/default':
 		ensure  => present,
 		content => "server {\n
-                		location / {\n
+				listen 80;\n
+				root /var/www/html;\n
+				location / {\n
+                    			try_files \$uri \$uri/ =404;\n
+                  		}\n
+                		location = / {\n
                   			rewrite ^/redirect_me https://www.youtube.com/ permanent;\n
                 		}\n
                 		error_page 404 /404.html;\n
+				location = /404.html {\n
+                    			root /var/www/html;\n
+                  		}\n
               		}\n",
 		notify  => Service['nginx'],
 	}
