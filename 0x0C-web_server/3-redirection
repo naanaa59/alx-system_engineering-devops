@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script install and configure an nginx web server
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/ permanent;" /etc/nginx/sites-available/default
+sudo service nginx start
