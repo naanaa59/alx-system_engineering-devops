@@ -19,20 +19,21 @@ class nginx_configure {
 
 	file { '/etc/nginx/sites-available/default':
 		ensure  => present,
-		content => "rewrite ^/redirect_me https://www.youtube.com/ permanent;\n"
-		notify  => Service['nginx'],
-	}
-
-	file { '/etc/nginx/sites-available/default':
-		ensure  => prenset,
-		content => "error_page 404 /404.html;",
+		content => "server {\n
+                		location / {\n
+                  			rewrite ^/redirect_me https://www.youtube.com/ permanent;\n
+                		}\n
+                		error_page 404 /404.html;\n
+              		}\n",
 		notify  => Service['nginx'],
 	}
 
 	service { 'nginx':
 		ensure    => running,
 		enable    => true,
-		subscribe => [File['/etc/nginx/sites-available/default'],
+		subscribe => [File['/etc/nginx/sites-available/default']],
 	}
+}
 class { 'nginx_install': }
 class { 'nginx_configure':}
+
