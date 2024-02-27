@@ -14,7 +14,7 @@ class nginx_configure {
 
 	file { '/var/www/html/404.html':
 		ensure  => file,
-		content => "Ceci n'est pas une page",
+		content => "Ceci n'est pas une page\n",
 	}
 
 	file { '/etc/nginx/sites-available/default':
@@ -33,7 +33,7 @@ class nginx_configure {
             				internal;
         			  }
         			  if (\$request_filename ~ redirect_me){
-            				rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+            				rewrite ^ https://www.youtube.com/ permanent;
         			  }
 }
 ",
