@@ -1,29 +1,10 @@
 # This is a puppet manifest that do the same config as previous bash script
 
-exec { 'apt-get-update':
-command => '/usr/bin/apt-get update',
-}
-package { 'nginx':
-ensure  => installed,
-require => Exec['apt-get-update'],
-}
-
-file { '/var/www/html/index.html':
-	content => 'Hello World!',
-	require => Package['nginx'],
-}
-
-exec { 'redirect_me':
-	command  => 'sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/ permanent;" /etc/nginx/sites-available/default',
-	provider => 'shell'
-}
-
-exec { 'X-Served-By':
-	command  => 'sed -i "/server {/a \	add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default',
-	provider => 'shell'
-}
-service { 'nginx':
-	ensure  => running,
-	require => Package['nginx'],
+exec { 'command':
+	command => 'apt-get -y update;
+	apt-get -y install nginx;
+	sudo sed -i "/listen 80 default_server;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-availabe/default;
+	servie nginx restart',
+	provider => shell,
 }
 
