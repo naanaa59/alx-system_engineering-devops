@@ -6,7 +6,7 @@ sudo apt-get -y upgrade
 
 sudo apt-get -y install haproxy
 sudo cp -a /etc/haproxy/haproxy.cfg{,.orig}
-sudo echo "\
+echo "\
 	frontend haproxy_balancer
 		bind *:80
 		mode http
@@ -16,6 +16,6 @@ sudo echo "\
 		balance roundrobin
 		server 512233-web-01 54.158.208.28:80 check
 		server 512233-web-02 52.91.156.191:80 check
-	" >> /etc/haproxy/haproxy.cfg
+	" | sudo tee -a  /etc/haproxy/haproxy.cfg
 sudo service haproxy restart
 
