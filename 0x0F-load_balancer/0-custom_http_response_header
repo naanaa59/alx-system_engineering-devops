@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script install and configure an nginx web server
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Hello World" | sudo tee /var/www/html/index
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/ permanent;" /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+sudo sed -i "50i error_page 404 /404.html;" /etc/nginx/sites-available/default
+sudo sed -i '/server {/a \	add_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
+sudo service nginx restart
