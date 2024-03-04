@@ -1,20 +1,16 @@
-# This is a puppet manifest that do the same config as previous bash script
+# Use Puppet to automate the task of creating a custom HTTP header response
 
-exec { 'apt-get-update':
-command => '/usr/bin/apt-get update || true',
+exec {'update':
+  command => '/usr/bin/apt-get update',
 }
-package { 'nginx':
-ensure  => installed,
-require => Exec['apt-get-update'],
+-> package {'nginx':
+  ensure => 'present',
 }
-
-
-exec { 'X-Served-By':
-	command  => "sudo sed -i '/server {/a \	add_header X-Served-By \$HOSTNAME;' /etc/nginx/sites-available/default",
-	provider => 'shell',
+-> file_line { 'http_header':
+  path  => '/etc/nginx/nginx.conf',
+  match => 'http {',
+  line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
 }
-service { 'nginx':
-	ensure  => running,
-	require => Package['nginx'],
+-> exec {'run':
+  command => '/usr/sbin/service nginx restart',
 }
-
