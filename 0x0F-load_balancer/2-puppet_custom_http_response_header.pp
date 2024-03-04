@@ -1,10 +1,20 @@
 # This is a puppet manifest that do the same config as previous bash script
 
-exec { 'command':
-	command => 'apt-get -y update;
-	apt-get -y install nginx;
-	sudo sed -i "/listen 80 default_server;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-availabe/default;
-	servie nginx restart',
-	provider => shell,
+exec { 'apt-get-update':
+command => '/usr/bin/apt-get update || true',
+}
+package { 'nginx':
+ensure  => installed,
+require => Exec['apt-get-update'],
+}
+
+
+exec { 'X-Served-By':
+	command  => 'sudo sed -i "/server {/a \	add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default',
+	provider => 'shell',
+}
+service { 'nginx':
+	ensure  => running,
+	require => Package['nginx'],
 }
 
