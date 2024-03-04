@@ -10,7 +10,7 @@ require => Exec['apt-get-update'],
 
 
 exec { 'X-Served-By':
-	command  => 'sudo sed -i "/server {/a \	add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default',
+	command  => "sudo sed -i '/server {/a \	add_header X-Served-By \$HOSTNAME;' /etc/nginx/sites-available/default",
 	provider => 'shell',
 }
 service { 'nginx':
