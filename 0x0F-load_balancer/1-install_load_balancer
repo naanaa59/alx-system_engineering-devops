@@ -2,17 +2,14 @@
 # This script install and configure HAproxy on lb-01 server
 
 sudo apt-get -y update
-sudo apt-get -y upgrade
-
 sudo apt-get -y install haproxy
-sudo cp -a /etc/haproxy/haproxy.cfg{,.orig}
 echo "\
-	frontend haproxy_balancer
+	frontend eyasu-frontend
 		bind *:80
 		mode http
-		default_backend webservers
+		default_backend eyasu-backend
 
-	backend webservers
+	backend eyasu-backend
 		balance roundrobin
 		server 512233-web-01 54.158.208.28:80 check
 		server 512233-web-02 52.91.156.191:80 check
