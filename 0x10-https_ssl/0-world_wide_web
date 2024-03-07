@@ -18,7 +18,7 @@ print_dns_info () {
 		dns_info=$(dig  $subdomain.$domain | grep -A1 'ANSWER SECTION:')
 		record_type=$(echo "$dns_info" | awk '{print $4}')
 		destination=$(echo "$dns_info" | awk '{print $5}')
-		echo -e "The subdomain "$subdomain.$domain" is a "$record_type" record and points to "$destination""
+		echo -e "The subdomain "$subdomain.$domain" is a"$record_type" record and points to "$destination""
 	fi
 }
 domain=$1
