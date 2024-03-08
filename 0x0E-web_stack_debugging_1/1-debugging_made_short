@@ -2,4 +2,4 @@
 # This script configures a server to solve Connection refused
 sudo rm -rf /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/default  /etc/nginx/sites-enabled/default
-sudo service nginx restart
+pkill -1 nginx
