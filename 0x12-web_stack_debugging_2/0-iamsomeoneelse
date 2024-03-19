@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script takes one argument, creates a user with and grant previliges of root to it
+
+sudo useradd -m -r -p '' "$1"
+
+sudo usermod -aG sudo "$1"
+
+sudo -u "$1" whoami
