@@ -3,6 +3,7 @@
     This script gather data from a REST API and create a CSV file
 """
 
+
 import csv
 import requests
 import sys
@@ -10,13 +11,11 @@ import sys
 
 if __name__ == "__main__":
 
-    """ main script """
+    user_id = int(sys.argv[1])
     EMPLOYEE_NAME = ""
     TOTAL_NUMBER_OF_TASKS = 0
     row_data = []
     all_data = []
-
-    user_id = int(sys.argv[1])
 
     response_users = requests.get("https://jsonplaceholder.typicode.com/users")
     response_todos = requests.get("https://jsonplaceholder.typicode.com/todos")
@@ -37,8 +36,9 @@ if __name__ == "__main__":
             row_data = [USER_ID, USERNAME, TASK_COMPLETED_STATUS, TASK_TITLE]
             all_data.append(row_data)
 
-with open(f'{user_id}.csv', mode='w', newline="") as file:
-    csv_writer = csv.writer(file, quoting=csv.QUOTE_ALL, lineterminator='\n')
+    with open(f'{user_id}.csv', mode='w', newline="") as file:
+        csv_writer = csv.writer(file, quoting=csv.
+                                QUOTE_ALL, lineterminator='\n')
 
-    for row in all_data:
-        csv_writer.writerow(row)
+        for row in all_data:
+            csv_writer.writerow(row)
