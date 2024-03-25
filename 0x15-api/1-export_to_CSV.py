@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    This script gather data from a REST API
+    This script gather data from a REST API and create a CSV file
 """
 import csv
 import requests
@@ -9,6 +9,7 @@ import sys
 
 if __name__ == "__main__":
 
+    """ main script """
     EMPLOYEE_NAME = ""
     TOTAL_NUMBER_OF_TASKS = 0
     row_data = []
