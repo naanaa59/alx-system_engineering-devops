@@ -37,7 +37,7 @@ if __name__ == "__main__":
             tasks_dict["task"] = TASK_TITLE
 
             TASK_COMPLETED_STATUS = f'{task.get("completed")}'
-            tasks_dict["completed"] = TASK_COMPLETED_STATUS
+            tasks_dict["completed"] = task.get("completed")
 
             USERNAME = f'{EMPLOYEE_NAME}'
             tasks_dict["username"] = USERNAME
