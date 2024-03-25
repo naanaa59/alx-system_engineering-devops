@@ -24,15 +24,15 @@ if __name__ == "__main__":
     json_todos = response_todos.json()
 
     for user in json_users:
-        if user["id"] == user_id:
-            EMPLOYEE_NAME = user["name"]
+        if user.get("id") == user_id:
+            EMPLOYEE_NAME = user.get("username")
 
     for task in json_todos:
-        if task["userId"] == user_id:
+        if task.get("userId") == user_id:
             USER_ID = f'{user_id}'
             USERNAME = f'{EMPLOYEE_NAME}'
-            TASK_COMPLETED_STATUS = f'{task["completed"]}'
-            TASK_TITLE = f'{task["title"]}'
+            TASK_COMPLETED_STATUS = f'{task.get("completed")}'
+            TASK_TITLE = f'{task.get("title")}'
             row_data = [USER_ID, USERNAME, TASK_COMPLETED_STATUS, TASK_TITLE]
             all_data.append(row_data)
 
