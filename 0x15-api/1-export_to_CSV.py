@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+"""
+    This script gather data from a REST API
+"""
+import csv
+import requests
+import sys
+
+
+if __name__ == "__main__":
+
+    EMPLOYEE_NAME = ""
+    TOTAL_NUMBER_OF_TASKS = 0
+    row_data = []
+    all_data = []
+
+    user_id = int(sys.argv[1])
+
+    response_users = requests.get("https://jsonplaceholder.typicode.com/users")
+    response_todos = requests.get("https://jsonplaceholder.typicode.com/todos")
+
+    json_users = response_users.json()
+    json_todos = response_todos.json()
+
+    for user in json_users:
+        if user["id"] == user_id:
+            EMPLOYEE_NAME = user["name"]
+
+    for task in json_todos:
+        if task["userId"] == user_id:
+            USER_ID = f'{user_id}'
+            USERNAME = f'{EMPLOYEE_NAME}'
+            TASK_COMPLETED_STATUS = f'{task["completed"]}'
+            TASK_TITLE = f'{task["title"]}'
+            row_data = [USER_ID, USERNAME, TASK_COMPLETED_STATUS, TASK_TITLE]
+            all_data.append(row_data)
+
+with open(f'{user_id}.csv', mode='w', newline="") as file:
+    csv_writer = csv.writer(file, quoting=csv.QUOTE_ALL, lineterminator='\n')
+
+    for row in all_data:
+        csv_writer.writerow(row)
