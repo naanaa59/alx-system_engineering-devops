@@ -2,6 +2,7 @@
 """
     This script gather data from a REST API and create a CSV file
 """
+
 import csv
 import requests
 import sys
