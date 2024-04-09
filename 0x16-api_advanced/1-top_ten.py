@@ -11,9 +11,9 @@ def top_ten(subreddit):
     headers = {'User-Agent': 'API advanced project 0.1'}
 
     response = requests.get(f'{url}{subreddit}/hot.json?limit=10',
-                            headers=headers)
+                            headers=headers, allow_redirects=False)
     data = response.json()
-    for post in data.get("data", {}).get("children", 0):
+    for post in data.get("data", {}).get("children", None):
 
-        sub = data.get("data", {}).get("title", 0)
-    return sub
+        post = data.get("data", {}).get("title", None)
+        print(post)
