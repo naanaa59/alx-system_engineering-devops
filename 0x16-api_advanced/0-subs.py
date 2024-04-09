@@ -1,4 +1,6 @@
+#!/usr/bin/python3
 """ This script return the numbers of subscribers to Reddit API """
+
 
 import requests
 import sys
