@@ -10,7 +10,7 @@ def top_ten(subreddit):
     url = 'https://www.reddit.com/r/'
     headers = {'User-Agent': 'API advanced project 0.1'}
 
-    response = requests.get(f'{url}{subreddit}/hot.json?limit=10',
+    response = requests.get(f'{url}{subreddit}/hot.json?limit=9',
                             headers=headers, allow_redirects=False)
     data = response.json()
     for post in data.get("data", {}).get("children", None):
