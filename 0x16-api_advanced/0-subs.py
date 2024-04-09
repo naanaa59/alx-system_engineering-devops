@@ -1,17 +1,17 @@
 #!/usr/bin/python3
-""" This script return the numbers of subscribers to Reddit API """
-
+"""
+Contains the number_of_subscribers function
+"""
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """ This function retrieves subsribers by subreddit name"""
-    url = 'https://www.reddit.com/r/'
-    headers = {'User-Agent': 'API advanced project 0.1'}
-
-    response = requests.get(f'{url}{subreddit}/about.json',
-                            headers=headers)
-    data = response.json()
-    sub = data.get("data", {}).get("subscribers", 0)
-    return sub
+    """returns the number of subscribers for a given subreddit"""
+    if subreddit is None or type(subreddit) is not str:
+        return 0
+    r = requests.get('http://www.reddit.com/r/{}/about.json'.format(subreddit),
+                     headers={'User-Agent': '0x16-api_advanced:project:\
+v1.0.0 (by /u/firdaus_cartoon_jr)'}).json()
+    subs = r.get("data", {}).get("subscribers", 0)
+    return subs
