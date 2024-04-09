@@ -8,13 +8,10 @@ def number_of_subscribers(subreddit):
     url = 'https://www.reddit.com/r/'
     headers = {'User-Agent': 'Oumaima'}
 
-    if subreddit is None or type(subreddit) is not str:
-        return 0
-
     response = requests.get(f'{url}{subreddit}/about.json',
                             headers=headers, allow_redirects=False)
     if response.status_code == 200:
         data = response.json()
-        return data['data']['subscribers']
+        return data.get("data", {}).get("subscribers", 0)
     else:
         return 0
