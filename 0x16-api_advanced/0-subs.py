@@ -7,6 +7,7 @@ import sys
 
 
 def number_of_subscribers(subreddit):
+    """ This function retrieves subsribers by subreddit name"""
     url = 'https://www.reddit.com/r/'
     headers = {'User-Agent': 'Oumaima'}
 
