@@ -1,5 +1,7 @@
 # Technical Postmortem: Debugging a 500 Internal Server Error in an Apache Server using Wordpress
 
+![Typo](https://preview.redd.it/8gwce0j02oa21.jpg?width=640&crop=smart&auto=webp&s=a0dce8dfd17eff67a617022690b364fe31e43986)
+
 ## Issue Summary
 During the last web stack debbuging project , an outage was observed on an isolated Ubuntu 14.04 container running an Apache web server. GET requests resulted in 500 Internal Server Errors, whereas the expected response was an HTML file defining a simple Holberton WordPress site.
 Fixing it took me 4 hours to figure it out and te learn how to use tools like strace.
