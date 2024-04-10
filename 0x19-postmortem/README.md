@@ -1,10 +1,13 @@
-# Technical Postmortem: Debugging a 500 Internal Server Error in an Apache Server
+# Technical Postmortem: Debugging a 500 Internal Server Error in an Apache Server using Wordpress
 
-## Initial Observation
-Upon the release of the ALX System Engineering & DevOps project 0x19, an outage was observed on an isolated Ubuntu 14.04 container running an Apache web server. GET requests resulted in 500 Internal Server Errors, whereas the expected response was an HTML file defining a simple Holberton WordPress site.
+## Issue Summary
+During the last web stack debbuging project , an outage was observed on an isolated Ubuntu 14.04 container running an Apache web server. GET requests resulted in 500 Internal Server Errors, whereas the expected response was an HTML file defining a simple Holberton WordPress site.
+Fixing it took me 4 hours to figure it out and te learn how to use tools like strace.
+The problem was caused by a typo in an configuration file.
 
 ## Timeline
-Wednesday 10 april 2024 AT 18:49 PM GMT
+The issue started:  Wednesday 10 april 2024 at 14h48 PM GMT
+Fixed :Wednesday 10 april 2024 AT 18:49 PM GMT
 
 ## Debugging Steps
 
@@ -27,7 +30,7 @@ Wednesday 10 april 2024 AT 18:49 PM GMT
 - Utilized Vim's pattern matching to search through the `/var/www/html/` directory for the erroneous `.phpp` file extension.
 - The error was located in `wp-settings.php` on line 137.
 
-## Resolution
+## Correction
 The issue was identified as a typo in the file extension, specifically a `.phpp` extension instead of the correct `.php`. Correcting the typo resolved the issue, allowing the server to return the expected 200 OK response.
 
 ## Automation and Prevention
